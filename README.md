@@ -37,18 +37,6 @@ wildlife-patrol/
 └── README.md
 ```
 
-## Setup Instructions
-
-1. Clone or download this repository
-2. Add a video file named `jungle.mp4` to the `assets/video/` directory (not included)
-3. Open `index.html` in a web browser
-
-## Technology Stack
-
-- HTML5, CSS3, JavaScript (ES6+)
-- Leaflet.js for interactive maps
-- No external dependencies or build process required
-
 ## Usage
 
 1. Open the landing page (`index.html`)
