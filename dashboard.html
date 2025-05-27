@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Wildlife Patrol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+  <header class="dashboard-header">
+    <div class="logo">
+      <img src="assets/images/logo.svg" alt="Wildlife Patrol Logo">
+      <h1>Wildlife Patrol</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="dashboard-container">
+    <div class="control-panel">
+      <div class="panel-header">
+        <h2>Control Panel</h2>
+        <button id="toggle-panel" class="toggle-button">
+          <span class="toggle-icon">←</span>
+        </button>
+      </div>
+      
+      <div class="algorithm-selector">
+        <h3>Select Algorithm</h3>
+        <div class="algorithm-options">
+          <label class="radio-container">
+            <input type="radio" name="algorithm" value="mst" checked>
+            <span class="radio-label">Kruskal's MST</span>
+            <span class="tooltip">Minimum Spanning Tree for maximum coverage</span>
+          </label>
+          
+          <label class="radio-container">
+            <input type="radio" name="algorithm" value="maxflow">
+            <span class="radio-label">Ford-Fulkerson Max Flow</span>
+            <span class="tooltip">Optimize resource distribution between stations</span>
+          </label>
+          
+          <label class="radio-container">
+            <input type="radio" name="algorithm" value="shortestpath">
+            <span class="radio-label">Bellman-Ford Shortest Path</span>
+            <span class="tooltip">Find optimal routes between stations</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="parameters">
+        <h3>Parameters</h3>
+        <div class="parameter-controls" id="mst-params">
+          <!-- MST has no specific parameters -->
+          <p class="param-description">Calculates the minimum spanning tree to connect all stations with the minimum total distance.</p>
+        </div>
+        
+        <div class="parameter-controls" id="maxflow-params" style="display: none;">
+          <div class="param-group">
+            <label for="source-station">Source Station:</label>
+            <select id="source-station" class="param-input"></select>
+          </div>
+          <div class="param-group">
+            <label for="sink-station">Sink Station:</label>
+            <select id="sink-station" class="param-input"></select>
+          </div>
+        </div>
+        
+        <div class="parameter-controls" id="shortestpath-params" style="display: none;">
+          <div class="param-group">
+            <label for="start-station">Start Station:</label>
+            <select id="start-station" class="param-input"></select>
+          </div>
+        </div>
+      </div>
+      
+      <button id="calculate-route" class="action-button">Calculate Route</button>
+      
+      <div class="route-stats">
+        <h3>Route Statistics</h3>
+        <div id="stats-container">
+          <div class="stat-item">
+            <span class="stat-label">Total Distance:</span>
+            <span class="stat-value" id="total-distance">-</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Stations Covered:</span>
+            <span class="stat-value" id="stations-covered">-</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Estimated Time:</span>
+            <span class="stat-value" id="estimated-time">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="map" class="map-container"></div>
+    
+    <div class="legend">
+      <h3>Legend</h3>
+      <div class="legend-item">
+        <span class="legend-marker station-marker"></span>
+        <span>Patrol Station</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-marker mst-line"></span>
+        <span>MST Route</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-marker maxflow-line"></span>
+        <span>Max Flow Route</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-marker shortestpath-line"></span>
+        <span>Shortest Path</span>
+      </div>
+    </div>
+
+<div class="map-toggle">
+  <button id="map-toggle-btn" class="map-toggle-button">
+    <span class="map-toggle-icon">🌍</span> Normal View
+  </button>
+</div>
+  </main>
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

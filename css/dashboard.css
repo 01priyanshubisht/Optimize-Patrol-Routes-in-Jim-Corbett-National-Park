@@ -1,0 +1,327 @@
+
+.dashboard-body {
+  background-color: var(--neutral-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-toggle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.map-toggle-button {
+  background-color: var(--forest-green);
+  color: rgb(1, 1, 1);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.map-toggle-button:hover {
+  background-color: var(--forest-green-dark);
+}
+
+.map-toggle-icon {
+  font-size: 18px;
+}
+
+.dashboard-header {
+  background-color: var(--forest-green);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-soft);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.dashboard-header .logo h1 {
+  margin-bottom: 0;
+}
+
+.dashboard-header nav a {
+  color: white;
+}
+
+.dashboard-header nav a.active {
+  font-weight: 700;
+}
+
+.dashboard-header nav a.active::after {
+  width: 100%;
+}
+
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+/* Control Panel */
+.control-panel {
+  width: 320px;
+  background-color: white;
+  box-shadow: var(--shadow-soft);
+  z-index: 100;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+
+.panel-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h2 {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--forest-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: rgba(46, 125, 50, 0.1);
+}
+
+.control-panel.collapsed {
+  transform: translateX(-320px);
+}
+
+.algorithm-selector,
+.parameters,
+.route-stats {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.algorithm-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.radio-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.3s ease;
+}
+
+.radio-container:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.radio-container input {
+  margin-right: var(--spacing-sm);
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--neutral-dark);
+  color: white;
+  text-align: center;
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm);
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.radio-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.parameter-controls {
+  margin-top: var(--spacing-md);
+}
+
+.param-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.param-input {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.param-description {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin-top: var(--spacing-sm);
+}
+
+.action-button {
+  margin: 0 var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--forest-green);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: var(--shadow-soft);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #256c29;
+  transform: translateY(-2px);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: var(--border-radius-sm);
+}
+
+.stat-label {
+  font-weight: 500;
+}
+
+.stat-value {
+  font-weight: 400;
+}
+
+/* Map Container */
+.map-container {
+  flex: 1;
+  height: calc(100vh - 72px);
+  z-index: 1;
+}
+
+/* Legend */
+.legend {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background-color: white;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  z-index: 500;
+}
+
+.legend h3 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.legend-marker {
+  width: 20px;
+  height: 3px;
+  margin-right: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.station-marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--forest-green);
+  border: 2px solid white;
+}
+
+.mst-line {
+  background-color: var(--forest-green);
+}
+
+.maxflow-line {
+  background-color: var(--water-blue);
+}
+
+.shortestpath-line {
+  background-color: var(--sunny-yellow);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .control-panel {
+    position: absolute;
+    height: calc(100vh - 72px);
+    left: 0;
+  }
+  
+  .control-panel.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  .toggle-icon {
+    transform: rotate(180deg);
+  }
+  
+  .control-panel.collapsed .toggle-icon {
+    transform: none;
+  }
+  
+  .legend {
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    max-width: calc(100% - 2 * var(--spacing-md));
+  }
+}
+
+/* Animation for route rendering */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-path {
+  animation: drawLine 1.5s ease-in-out forwards;
+}
